@@ -1,5 +1,6 @@
 package com.example.unit9;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,10 +28,12 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setType("*/*");
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hey Study Partner!");
+                if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(emailIntent);}
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -66,12 +70,44 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class)
+            startActivity(settingsIntent);
+            return true;}
+
+
+        if (id == R.id.nav_add){
+            Snackbar.make(getWindow().getDecorView(), "Adding study mates is not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
             return true;
         }
+        if (id == R.id.nav_remove) {
+            Snackbar.make(getWindow().getDecorView(), "Deleting a study mates is not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+            return true;
+        }
+        if (id == R.id.nav_email) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("*/*");
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hey Study Partner!");
+            if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(emailIntent);
+            }
+            return true;
+        }
+        if (id == R.id.nav_SMS) {
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.setData(Uri.parse("sms:2183302287"));
+            sendIntent.putExtra("smsText", "Hey Study Partner.");
+            if (sendIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(sendIntent);
+            }
+            return true;
 
-        return super.onOptionsItemSelected(item);
+            return super.onOptionsItemSelected(item);}
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -80,22 +116,47 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_add) {
-            // Handle the camera action
-        } else if (id == R.id.nav_remove) {
+        if (id == R.id.settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class)
+            startActivity(settingsIntent);
+            return true;}
 
-        } else if (id == R.id.nav_SMS) {
 
-        } else if (id == R.id.nav_email) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_add){
+            Snackbar.make(getWindow().getDecorView(), "Adding study mates is not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+            return true;
         }
+        if (id == R.id.nav_remove) {
+            Snackbar.make(getWindow().getDecorView(), "Deleting a study mates is not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+            return true;
+        }
+        if (id == R.id.nav_email) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("*/*");
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hey Study Partner!");
+            if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(emailIntent);
+            }
+            return true;
+        }
+        if (id == R.id.nav_SMS) {
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.setData(Uri.parse("sms:2183302287"));
+            sendIntent.putExtra("smsText", "Hey Study Partner.");
+            if (sendIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(sendIntent);
+            }
+            return true;
+
+        return super.onOptionsItemSelected(item);}
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-}
+
+}}
+
