@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+//options item selected on list
         int id = item.getItemId();
 
 
@@ -98,20 +98,20 @@ public class MainActivity extends AppCompatActivity
         }
         if (id == R.id.nav_SMS) {
             Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-            sendIntent.setData(Uri.parse("sms:2183302287"));
+            sendIntent.setData(Uri.parse("sms:2183302287")); //uri not working
             sendIntent.putExtra("smsText", "Hey Study Partner.");
             if (sendIntent.resolveActivity(getPackageManager()) != null) {
                 startActivity(sendIntent);
             }
             return true;
 
-            return super.onOptionsItemSelected(item);}
+            return super.onOptionsItemSelected(item);} //Not working
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
+    //on navigation bar item selected
         int id = item.getItemId();
 
         if (id == R.id.settings) {
